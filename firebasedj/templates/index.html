@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FCM Notification Response</title>
+  </head>
+  <body>
+    {% if response %}
+      <h1>FCM Notification Sent Successfully</h1>
+      <p>Number of devices that received the notification: {{ response }}</p>
+    {% else %}
+      <h1>Failed to Send FCM Notification</h1>
+    {% endif %}
+  </body>
+</html>

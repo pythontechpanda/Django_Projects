@@ -1,0 +1,80 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+
+  <main id="main" class="main">
+
+   
+    <section class="section">
+      <div class="row">
+        
+
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Invite User</h5>
+              {% if messages %}
+                <p class="messagelist" style="font-weight: bold;border-radius: 10px;background-color: #ffffff;font-size: 18px;color: rgb(63, 163, 50);">{% for message in messages %}{{ message }}{% endfor %}</p>
+                {% endif %}
+              <!-- Vertical Form -->
+              <form class="row g-3" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Invite</label>
+                  <select name="clubname" id="inputAddress" class="form-control">
+                    <option type"hidden">------------</option>
+                    {% for cl in club%}
+                    <option value="{{ cl.id}}">{{cl.clubname}}</option>
+                    {% endfor %}
+                    
+                  </select>                  
+                </div>
+
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Club Name</label>
+                  <select name="inviteto" id="inputAddress" class="form-control">
+                    <option type"hidden">------------</option>
+                    {% for mem in user%}
+                    <option value="{{ mem.id}}">{{mem.full_name}}</option>
+                    {% endfor %}                    
+                  </select>                  
+                </div>
+                
+                {% comment %} <div class="col-12">
+                  <label for="inputNanme4" class="form-label">is join</label>
+                  <input type="checkbox" id="vehicle1" name="is_join" value="{{ round.is_join }}">
+                </div> {% endcomment %}
+
+                <div class="col-12">
+                  <label for="inputAddress" class="form-label">Is Join</label><br>
+                  <input type="radio" id="html" name="is_join" value="1"> True
+                  <input type="radio" id="html" name="is_join" value="0"> False
+                  {% comment %} <select name="is_join" id="inputAddress" class="form-control">
+                    <option type"hidden">------------</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                  </select> {% endcomment %}
+                </div>
+               
+
+              
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary col-md-12">Send Invite</button>
+                  {% comment %} <button type="reset" class="btn btn-secondary">Reset</button> {% endcomment %}
+                </div>
+              </form><!-- Vertical Form -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  {% endblock content %}

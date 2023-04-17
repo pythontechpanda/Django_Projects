@@ -1,0 +1,71 @@
+{% extends 'admin/dashboard.html' %} 
+
+
+
+     {% block content %}
+            <div class="content">
+            <!-- Form Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            
+                            <h6 class="mb-4">ADD COUNTRY</h6>
+                            {% if messages %}
+                            {% for message in messages %}
+                            <p style="padding: 10px;font-size: 18px;color: #008000;border-radius: 10px;">{{ message }}</p>
+                                {% endfor %}</ul>
+                            {% endif %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Country Name</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp">
+                                    
+                                </div>
+                               
+                                <button type="submit" class="btn btn-primary">Add</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                   <!-- Recent Sales Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Recent Salse</h6>
+                        <a href="">Show All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">S.No</th>
+                                    <th scope="col">County</th>
+                                    {% comment %} <th scope="col">Invoice</th>
+                                    <th scope="col">Customer</th> {% endcomment %}
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for name in data%}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{ name.country }}</td>                     
+                                    {% comment %} <td><a class="btn btn-sm btn-primary" href="">Detail</a></td> {% endcomment %}
+                                </tr>
+                               {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Sales End -->
+                   
+                </div>
+            </div>
+        </div>
+            <!-- Form End -->
+{% endblock content %}
+            
+

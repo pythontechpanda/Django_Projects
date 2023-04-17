@@ -1,0 +1,58 @@
+{% extends 'admin/dashboard.html' %} 
+
+
+
+     {% block content %}
+            <div class="content">
+            <!-- Form Start -->
+            
+                    
+                   <!-- Recent Sales Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">User List</h6>
+                        <a href="">Show All</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">S.No</th>
+                                    <th scope="col">Full Name</th>
+                                    <th scope="col">User Type</th>
+                                    {% comment %} <th scope="col">Customer</th> {% endcomment %}
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for name in user%}
+                                <tr>
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{ name.first_name }}</td> 
+                                    <td>
+                                        {% if name.is_staff == 1 %}
+                                        Buyer
+                                        {% elif name.is_supplier == 1 %}
+                                        Supplier
+                                        {% elif name.is_admin == 1 %}
+                                        <b style="color: rgb(9, 173, 53);">Admin</b>
+                                      {% endif %}
+                                    </td>                      
+                                    <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                </tr>
+                               {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Sales End -->
+                   
+                </div>
+            </div>
+        </div>
+            <!-- Form End -->
+{% endblock content %}
+            
+

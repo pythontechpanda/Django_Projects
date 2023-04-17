@@ -1,0 +1,122 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+  <main id="main" class="main">
+
+    {% comment %} <div class="pagetitle">
+      <h1>Form Layouts</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Forms</li>
+          <li class="breadcrumb-item active">Layouts</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title --> {% endcomment %}
+    <section class="section">
+      <div class="row">
+        
+
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Create Club</h5>
+              {% if messages %}
+                <p class="messagelist" style="font-weight: bold;border-radius: 10px;background-color: #ffffff;font-size: 18px;color: rgb(63, 163, 50);">{% for message in messages %}{{ message }}{% endfor %}</p>
+                {% endif %}
+
+              <!-- Vertical Form -->
+              <form class="row g-3"  method="post" enctype="multipart/form-data" name = "myform">
+                
+                {% csrf_token %}
+
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Club Name</label>
+                  <input type="text" class="form-control" id="inputNanme4" name="clubname">
+                </div>
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Club Amount</label>
+                  <input type="text" class="form-control" name = "clubamount">
+                </div>
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Club Members</label>
+                  <input type="text" class="form-control"  name="clubmembers" onkeyup="calculate(this.value)" >
+                </div>
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Club Contribution</label>
+                  <input type="text" class="form-control"  name="clubcontribution">
+                </div>
+
+                <div class="col-12">
+                    <label for="inputPassword4" class="form-label">Profile picture</label>
+                    <input class="form-control" type="file" name="clubimage" id="fileToUpload" required>
+                  </div>
+                
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  {% comment %} <button type="reset" class="btn btn-secondary">Reset</button> {% endcomment %}
+                </div>
+              </form><!-- Vertical Form -->
+
+            </div>
+          </div>
+
+         
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"> </script>  
+  <script type = "text/javascript">  
+  function calculate() {   
+   if(isNaN(document.forms["myform"]["clubamount"].value) || document.forms["myform"]["clubamount"].value=="") {   
+   var text1 = 0;   
+   } else {   
+   var text1 = parseInt(document.forms["myform"]["clubamount"].value);   
+   }   
+   if(isNaN(document.forms["myform"]["clubmembers"].value) || document.forms["myform"]["clubmembers"].value=="") {   
+   var text2 = 0;   
+   } else {   
+   var text2 = parseFloat(document.forms["myform"]["clubmembers"].value);   
+   }   
+   document.forms["myform"]["clubcontribution"].value = (text1/text2);   
+   }  
+  </script>  
+  {% comment %} <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/chart.js/chart.umd.js' %}"></script>
+  <script src="{% static 'assets/vendor/echarts/echarts.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/quill/quill.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/simple-datatables/simple-datatables.js' %}"></script>
+  <script src="{% static 'assets/vendor/tinymce/tinymce.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html> {% endcomment %}
+
+{% endblock content %}

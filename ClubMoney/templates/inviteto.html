@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Invite Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">General</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body" style="padding: 10px;">
+              <a href="/homepage/createinvite/"><button type="submit" class="btn btn-primary col-md-3">Add New Invite</button></a>
+            
+
+              {% if messages %}
+                <p class="messagelist" style="font-weight: bold;border-radius: 10px;background-color: #ffffff;font-size: 18px;color: rgb(63, 163, 50);">{% for message in messages %}{{ message }}{% endfor %}</p>
+                {% endif %}
+              <!-- Default Table -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Club Name</th>
+                    <th scope="col">Invite To</th>
+                    <th scope="col">Join status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for invite in invites %}
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{ invite.clubname }}</td>
+                    <td>{{ invite.inviteto }}</td>
+                    <td>{{ invite.is_join }}</td>
+                    <td style="text-align: center;"><a class="btn btn-success" style="border-radius:50%;" href="{% url 'update_inv' id=invite.id %}"> <i class="fa fa-pencil" style="font-size: 14px;"> </i> </a>
+                      <a class="btn btn-danger" style="border-radius:50%;" href="{% url 'del_inv' id=invite.id %}"><i class="fa fa-trash-o" style="font-size: 14px;"></i></a></td>
+                  </tr>
+                  {% endfor %}
+                 
+                </tbody>
+              </table>
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+
+         
+        </div>
+
+       
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  {% endblock content %}

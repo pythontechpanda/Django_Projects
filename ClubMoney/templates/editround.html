@@ -1,0 +1,113 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+  <main id="main" class="main">
+
+    {% comment %} <div class="pagetitle">
+      <h1>Form Layouts</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Forms</li>
+          <li class="breadcrumb-item active">Layouts</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title --> {% endcomment %}
+    <section class="section">
+      <div class="row">
+        
+
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Edit Round Details</h5>
+              {% if messages %}
+                <p class="messagelist" style="font-weight: bold;border-radius: 10px;background-color: #ffffff;font-size: 18px;color: rgb(63, 163, 50);">{% for message in messages %}{{ message }}{% endfor %}</p>
+                {% endif %}
+
+              <!-- Vertical Form -->
+              <form class="row g-3"  method="post" enctype="multipart/form-data" name = "myform">
+                
+                {% csrf_token %}
+
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Club Name</label>
+                  <input type="text" class="form-control" id="inputNanme4" name="clubname" value="{{ round.clubname }}">
+                </div>
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Round No</label>
+                  <input type="text" class="form-control" name = "roundno" value="{{ round.roundno }}">
+                </div>
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Round Name</label>
+                  <input type="text" class="form-control"  name="roundname" value="{{ round.roundname }}">
+                </div>
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Min. Bid</label>
+                  <input type="text" class="form-control"  name="minbid" value="{{ round.minbid }}">
+                </div>
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Max. Bid</label>
+                  <input type="text" class="form-control"  name="maxbid" value="{{ round.maxbid }}">
+                </div>
+
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Round Winner</label>
+                  <input type="text" class="form-control"  name="winner" value="{{ round.winner }}">
+                </div>
+
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Round Amount</label>
+                  <input type="text" class="form-control"  name="roundamount" value="{{ round.roundamount }}">
+                </div>
+
+                {% comment %} <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Status</label>
+                  <input type="text" class="form-control"  name="status" value="{{ round.status }}">
+                </div> {% endcomment %}
+
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Status</label>
+                  <input type="text" class="form-control"  name="status" value="{{ round.status }}">
+                </div>
+
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Start Date</label>
+                  <input type="date" class="form-control"  name="startdate" value="{{ round.startdate }}">
+                </div>
+                
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Start Time</label>
+                  <input type="time" class="form-control"  name="starttime" value="{{ round.starttime }}">
+                </div>
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Duration</label>
+                  <input type="text" class="form-control"  name="duration" value="{{ round.duration }}">
+                </div>
+
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">Round Completed</label>
+                  <input type="checkbox" id="vehicle1" name="is_completed" value="{{ round.is_completed }}">
+                </div>
+
+                
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  {% comment %} <button type="reset" class="btn btn-secondary">Reset</button> {% endcomment %}
+                </div>
+              </form><!-- Vertical Form -->
+
+            </div>
+          </div>
+
+         
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  {% endblock content %}

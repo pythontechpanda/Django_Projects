@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Payment Details</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">General</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              {% comment %} <a href="/homepage/createbankdetail/"><button type="submit" class="btn btn-primary col-md-3">Create Bank Detail</button></a> {% endcomment %}
+
+              <!-- Default Table -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Roundpayment</th>
+                    <th scope="col">Winner</th>
+                    <th scope="col">Looser</th>
+                    <th scope="col">Payamount</th>
+                    <th scope="col">Payment time</th>
+                    <th scope="col">Is paid</th>  
+                    <th scope="col">Operations</th> 
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for pay in payment %}
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{ pay.roundpayment }}</td>
+                    <td>{{ pay.winner }}</td>
+                    <td>{{ pay.looser }}</td>
+                    <td>{{ pay.payamount }}</td>
+                    <td>{{ pay.payment_time }}</td>
+                    <td>{{ pay.is_paid }}</td>
+                    {% comment %} <td><img src="/media/{{ noti.image }}" alt="notification image" width="100"></td> {% endcomment %}
+                    <td style="text-align: center;"><a class="btn btn-success" style="border-radius:50%;" href="{% url 'update_pay' id=pay.id %}"> <i class="fa fa-pencil" style="font-size: 14px;"> </i> </a>
+                      <a class="btn btn-danger" style="border-radius:50%;" href="{% url 'del_pay' id=pay.id %}"><i class="fa fa-trash-o" style="font-size: 14px;"></i></a></td>
+                  </tr>
+                  {% endfor %}
+                 
+                </tbody>
+              </table>
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+
+          
+
+        </div>
+
+        
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  {% endblock content %}

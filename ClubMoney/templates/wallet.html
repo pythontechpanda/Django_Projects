@@ -1,0 +1,76 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Cash Wallet Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">General</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body" style="padding: 10px;">
+              {% comment %} <a href="/homepage/createcashwallet/"><button type="submit" class="btn btn-primary col-md-3">Add Cash</button></a> {% endcomment %}
+            
+
+              {% if messages %}
+                <p class="messagelist" style="font-weight: bold;border-radius: 10px;background-color: #ffffff;font-size: 18px;color: rgb(63, 163, 50);">{% for message in messages %}{{ message }}{% endfor %}</p>
+                {% endif %}
+              <!-- Default Table -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Wallet Amount</th>
+                    {% comment %} <th scope="col">Total Amount</th>
+                    <th scope="col">Wallet Withdraw</th> {% endcomment %}
+                    <th scope="col">Date</th>
+                    <th scope="col">Added</th>
+                    {% comment %} <th scope="col">Withdraw</th> {% endcomment %}
+                    <th scope="col">Operations</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for amt in wallet %}
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{ amt.userwallet.full_name }}</td>
+                    <td>{{ amt.walletamount }}</td>
+                    {% comment %} <td>{{ amt.totalamount }}</td>
+                    <td>{{ amt.walletwithdraw }}</td> {% endcomment %}
+                    <td>{{ amt.casdate }}</td>
+                    <td>{{ amt.is_added }}</td>
+                    {% comment %} <td>{{ amt.is_withdraw }}</td> {% endcomment %}
+                    <td style="text-align: center;"><a class="btn btn-success" style="border-radius:50%;" href="{% url 'update_wallet' id=amt.id %}"> <i class="fa fa-pencil" style="font-size: 14px;"> </i> </a>
+                      <a class="btn btn-danger" style="border-radius:50%;" href="{% url 'del_wallet' id=amt.id %}"><i class="fa fa-trash-o" style="font-size: 14px;"></i></a></td>
+                  </tr>
+                  {% endfor %}
+                 
+                </tbody>
+              </table>
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+
+         
+        </div>
+
+       
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  {% endblock content %}

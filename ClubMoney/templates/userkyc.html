@@ -1,0 +1,71 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>User KYC Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">General</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body" style="padding:10px;">
+              <a href="/homepage/createkyc/"><button type="submit" class="btn btn-primary col-md-3">Add New KYC</button></a>
+              <!-- Default Table -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">User Fullname</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Aadharnon</th>
+                    <th scope="col">Pan No</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Is Verified</th>
+                    <th scope="col">Operations</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for ky in kyc %}
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td><a href="{% url 'view_kyc' id=ky.id %}">{{ ky.registeruser.full_name }}</a></td>
+                    <td>{{ ky.address }}</td>
+                    <td>{{ ky.mobile }}</td>
+                    <td>{{ ky.aadharno }}</td>
+                    <td>{{ ky.panno }}</td>
+                    <td>{{ ky.email }}</td>
+                    <td>{{ ky.is_verified }}</td>
+                    <td style="text-align: center;"><a class="btn btn-success" style="border-radius:50%;" href="{% url 'update_kyc' id=ky.id %}"> <i class="fa fa-pencil" style="font-size: 14px;"> </i> </a>
+                      <a class="btn btn-danger" style="border-radius:50%;" href="{% url 'del_kyc' id=ky.id %}"><i class="fa fa-trash-o" style="font-size: 14px;"></i></a>
+                     
+                    </td>
+                      
+                    </tr>
+                  {% endfor %}
+                 
+                </tbody>
+              </table>
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+
+          
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  {% endblock content %}

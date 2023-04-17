@@ -1,0 +1,87 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>All Clubs</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">General</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body" style="padding:10px;">
+           
+              {% comment %} <a href="/homepage/createclub/"><button type="submit" class="btn btn-primary col-md-3">Add New Club</button></a> {% endcomment %}
+
+              {% if messages %}
+                <p class="messagelist" style="font-weight: bold;border-radius: 10px;background-color: #ffffff;font-size: 18px;color: rgb(63, 163, 50);">{% for message in messages %}{{ message }}{% endfor %}</p>
+                {% endif %}
+
+              <!-- Default Table -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Club Name</th>
+                    <th scope="col">Round No</th>
+                    <th scope="col">Round Name</th>
+                    <th scope="col">Min. bid</th>
+                    <th scope="col">Max. bid</th>
+                    <th scope="col">Winner</th>
+                    <th scope="col">Round Amount</th>
+                    <th scope="col">Start Date</th>
+                    <th scope="col">Start Time</th>
+                    <th scope="col">Duration</th>
+                    {% comment %} <th scope="col">Duration</th> {% endcomment %}
+                    <th scope="col">Operations</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for round in rounds %}
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    {% comment %} <td><a href="{% url 'view' id=round.id %}">{{ round.clubname }}</a></td> {% endcomment %}
+                    <td>{{ round.clubname }}</td>
+                    <td>{{ round.roundno }}</td>
+                    <td>{{ round.roundname }}</td>
+                    <td>{{ round.minbid }}</td>
+                    <td>{{ round.maxbid }}</td>
+                    <td>{{ round.winner }}</td>
+                    <td>{{ round.roundamount }}</td>
+                    <td>{{ round.status }}</td>
+                    <td>{{ round.startdate }}</td>
+                    <td>{{ round.starttime }}</td>
+                    {% comment %} <td>{{ round.duration }}</td> {% endcomment %}
+                    <td style="text-align: center;"><a href="{% url 'update_round' id=round.id %}"> <i class="fa fa-pencil"> </i> </a>
+                      <a href="{% url 'del_round' id=round.id %}"><i class="fa fa-trash-o"></i></a></td>
+                  </tr>
+                  {% endfor %}
+                 
+                </tbody>
+              </table>
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  {% endblock content %}
+

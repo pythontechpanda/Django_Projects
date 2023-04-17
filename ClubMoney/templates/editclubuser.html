@@ -1,0 +1,78 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+  <main id="main" class="main">
+
+   
+    <section class="section">
+      <div class="row">
+        
+
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Edit Bank details</h5>
+              {% if messages %}
+                <p class="messagelist" style="font-weight: bold;border-radius: 10px;background-color: #ffffff;font-size: 18px;color: rgb(63, 163, 50);">{% for message in messages %}{{ message }}{% endfor %}</p>
+                {% endif %}
+              <!-- Vertical Form -->
+              <form class="row g-3" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">User Wallet</label>
+                  {% comment %} <input type="text" class="form-control" id="inputNanme4" name="registeruser"> {% endcomment %}
+                  <select name="userid" id="inputAddress" class="form-control">
+                    {% comment %} <option type"hidden">------------</option> {% endcomment %}
+                    <option value="{{ mypay.id }}">{{mypay.userid}}</option>
+                    {% for user in users %}
+                    <option value="{{ user.id }}">{{user.full_name}}</option>
+                    {% endfor %}                    
+                  </select>    
+                </div>
+                
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">User Wallet</label>
+                  {% comment %} <input type="text" class="form-control" id="inputNanme4" name="registeruser"> {% endcomment %}
+                  <select name="clubid" id="inputAddress" class="form-control">
+                    {% comment %} <option type"hidden">------------</option> {% endcomment %}
+                    <option value="{{ mypay.id }}">{{mypay.clubid}}</option>
+                    {% for club in getclub %}
+                    <option value="{{ club.id }}">{{club.clubname}}</option>
+                    {% endfor %}                    
+                  </select>    
+                </div>
+
+                {% comment %} <div class="col-12">
+                  <label for="inputPassword4" class="form-label">Passbook Image</label>
+                  <input type="file" class="form-control" name="passbookimg" value="{{ mypay.passbookimg }}" id="inputPassword4">
+                  <span>{{ mypay.passbookimg }}</span>
+                </div> {% endcomment %}
+                
+                {% comment %} <div class="col-12">
+                  <label for="inputAddress" class="form-label">Payment Status</label>
+                  <select name="payment_status" id="inputAddress" class="form-control">
+                    <option value="{{mypay.payment_status}}">{{mypay.payment_status}}</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                  </select>
+                </div> {% endcomment %}
+
+
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary col-md-12">Edit Bank</button>
+                  {% comment %} <button type="reset" class="btn btn-secondary">Reset</button> {% endcomment %}
+                </div>
+              </form><!-- Vertical Form -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  {% endblock content %}

@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Bank Details</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">General</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <a href="/homepage/createbankdetail/"><button type="submit" class="btn btn-primary col-md-3">Create Bank Detail</button></a>
+
+              <!-- Default Table -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Register No</th>
+                    <th scope="col">IFSC Code</th>
+                    <th scope="col">Account Name</th>
+                    <th scope="col">Account Number</th>
+                    <th scope="col">Passbook image</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for bank in banks %}
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{ bank.registeruser }}</td>
+                    <td>{{ bank.registerno }}</td>
+                    <td>{{ bank.IFSCcode }}</td>
+                    <td>{{ bank.accountname }}</td>
+                    <td>{{ bank.accountnumber }}</td>
+                    <td><img src="/media/{{ bank.passbookimg }}" alt="Passbook image" width="100"></td>
+                    <td style="text-align: center;"><a class="btn btn-success" style="border-radius:50%;" href="{% url 'update_bank' id=bank.id %}"> <i class="fa fa-pencil" style="font-size: 14px;"> </i> </a>
+                      <a class="btn btn-danger" style="border-radius:50%;" href="{% url 'del_bank' id=bank.id %}"><i class="fa fa-trash-o" style="font-size: 14px;"></i></a></td>
+                  </tr>
+                  {% endfor %}
+                 
+                </tbody>
+              </table>
+              <!-- End Default Table Example -->
+            </div>
+          </div>
+
+          
+
+        </div>
+
+        
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  {% endblock content %}

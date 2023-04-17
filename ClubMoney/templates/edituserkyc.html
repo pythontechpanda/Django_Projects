@@ -1,0 +1,104 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+  <main id="main" class="main">
+
+   
+    <section class="section">
+      <div class="row">
+        
+
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Create KYC</h5>
+              {% if messages %}
+                <p class="messagelist" style="font-weight: bold;border-radius: 10px;background-color: #ffffff;font-size: 18px;color: rgb(63, 163, 50);">{% for message in messages %}{{ message }}{% endfor %}</p>
+                {% endif %}
+              <!-- Vertical Form -->
+              <form class="row g-3" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="col-12">
+                  <label for="inputNanme4" class="form-label">User List</label>
+                  {% comment %} <input type="text" class="form-control" id="inputNanme4" name="registeruser"> {% endcomment %}
+                  <select name="registeruser" id="inputAddress" class="form-control">
+                    <option value="{{ kyc.id }}">{{kyc.registeruser.full_name}}</option>
+                    {% for user in users %}
+                    <option value="{{ user.id }}">{{user.full_name}}</option>
+                    {% endfor %}                    
+                  </select>    
+                </div>
+                <div class="col-12">
+                  <label for="inputEmail4" class="form-label">Address</label>
+                  <input type="text" class="form-control" id="inputEmail4" name="address" value="{{ kyc.address}}">
+                </div>
+                <div class="col-12">
+                  <label for="inputPassword4" class="form-label">Mobile</label>
+                  <input type="text" class="form-control" id="inputPassword4" name="mobile" value="{{ kyc.mobile}}">
+                </div>
+                <div class="col-12">
+                  <label for="inputAddress" class="form-label">Full name</label>
+                  <input type="text" class="form-control" id="inputPassword4" name="fullname" value="{{ kyc.fullname}}">
+                </div>
+                <div class="col-12">
+                  <label for="inputPassword4" class="form-label">Email</label>
+                  <input type="text" class="form-control" name="email" id="inputPassword4" value="{{ kyc.email}}">
+                </div>
+                <div class="col-12">
+                  <label for="inputPassword4" class="form-label">Aadhar no</label>
+                  <input type="text" class="form-control" name="aadharno" id="inputPassword4" value="{{ kyc.aadharno}}">
+                </div>
+                {% comment %} <div class="col-12">
+                  <label for="inputPassword4" class="form-label">Aadhar Front image</label>
+                  <input class="form-control" type="file" name="aadharfrontimg" id="fileToUpload" value="{{ kyc.aadharfrontimg}}">
+                </div>
+                <div class="col-12">
+                  <label for="inputPassword4" class="form-label">Aadhar Back image</label>
+                  <input class="form-control" type="file" name="aadharbackimg" id="fileToUpload" value="{{ kyc.aadharbackimg}}">
+                </div> {% endcomment %}
+                <div class="col-12">
+                  <label for="inputPassword4" class="form-label">Pan No</label>
+                  <input type="text" class="form-control" name="panno" id="inputPassword4" value="{{ kyc.panno}}">
+                </div>
+              
+                {% comment %} <div class="col-12">
+                  <label for="inputPassword4" class="form-label">Pan Image</label>
+                  <input class="form-control" type="file" name="panimg" id="fileToUpload" value="{{ kyc.panno}}">
+                </div> {% endcomment %}
+
+                <div class="col-12">
+                  <label for="inputAddress" class="form-label">Is Verified</label><br>
+                  <select name="is_verified" id="inputAddress" class="form-control">
+                    <option value="{{ kyc.id }}">{{kyc.is_verified}}</option>
+                    <option value="1">True</option>
+                    <option value="0">False</option>
+                                
+                  </select>    
+                  {% comment %} <input type="radio" id="html" name="is_verified" value="{{ kyc.is_verified}}"> True {% endcomment %}
+                </div>
+
+
+                <a class="btn btn-warning" style="border-radius:5%;" href="{% url 'nitify' id=kyc.id %}">Notify</a>
+                <a class="btn btn-danger" style="border-radius:5%;" href="{% url 'nitifyrej' id=kyc.id %}">Reject</a>
+                
+{% comment %} 
+                <button type="submit" class="btn btn-success">Verified</button>
+                <button  type="submit" class="btn btn-danger">Reject</button> {% endcomment %}
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary col-md-12" >Edit Profile</button>
+                  {% comment %} <button type="reset" class="btn btn-secondary">Reset</button> {% endcomment %}
+                </div>
+              </form><!-- Vertical Form -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  {% endblock content %}

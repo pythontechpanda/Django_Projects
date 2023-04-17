@@ -1,0 +1,40 @@
+{% extends 'admin/dashboard.html' %} 
+
+
+
+     {% block content %}
+            <div class="content">
+            <!-- Form Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            
+                            <h6 class="mb-4">Edit Looking Option</h6>
+                            {% if messages %}
+                            {% for message in messages %}
+                            <p style="padding: 10px;font-size: 18px;color: #008000;border-radius: 10px;">{{ message }}</p>
+                                {% endfor %}</ul>
+                            {% endif %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Looking Name</label>
+                                    <input type="text" class="form-control" id="" name="name" value={{ data.opetion }}>
+                                    
+                                </div>
+                               
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                  
+                   
+                </div>
+            </div>
+        </div>
+            <!-- Form End -->
+{% endblock content %}
+            
+

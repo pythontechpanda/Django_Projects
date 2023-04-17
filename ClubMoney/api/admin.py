@@ -1,0 +1,21 @@
+from django.contrib import admin
+from .models import *
+
+admin.site.register(user_registration)
+admin.site.register(userkyc)
+admin.site.register(club)
+admin.site.register(rounds)
+admin.site.register(bankdetail)
+admin.site.register(IssueMessages)
+admin.site.register(CustomerCare)
+admin.site.register(invite_user)
+admin.site.register(cashwallet)
+admin.site.register(bidding)
+admin.site.register(AddMoney)
+admin.site.register(WithdrawMoney)
+admin.site.register(GetClubByUser)
+admin.site.register(AvgTrasferTime)
+admin.site.register(AmountTrasferTime)
+admin.site.register(ClubClosedTime)
+admin.site.register(AppNotification)
+admin.site.register(paymentrecord)
